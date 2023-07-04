@@ -1,24 +1,43 @@
-import java.sql.*;
-public class Main {
-    public static void main(String[] args){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver" );
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_2311_delivery" ,
-                    "std_2311_delivery" , "sosa1234" );
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM client" ;
-            ResultSet result = statement.executeQuery(query);
-            while(result.next()){
-                int id = result.getInt("id" );
-                String name = result.getString("name" );
-                System.out.print("id = " + id);
-                System.out.print(" , name = \"" + name + "\"" );
-            }
-            connection.close();
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
+
+        Scene signInScene = new Scene(root);
+
+        primaryStage.setTitle("App");
+        primaryStage.setScene(signInScene);
+        primaryStage.show();
+
+//        User u = new User();
+        Link link = new Link();
+
+        SignInController.setClients(link.getClients().getClients());
+
+    }
+    public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        launch(args);
+
     }
 }
