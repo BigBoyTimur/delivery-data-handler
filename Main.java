@@ -27,7 +27,8 @@ public class Main extends Application {
 
         SignInController.setUsers(link.getUsers().getUsers());
         SignUpController.setClients(link.getClients());
-        System.out.println(User.toHash("admin"));
+        LinkController.setTables(link.getUsers(), link.getClients(), link.getPackages(), link.getPackagesCouriers());
+//        System.out.println(User.toHash("admin"));
     }
     public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         launch(args);

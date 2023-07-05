@@ -8,6 +8,7 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -28,32 +29,57 @@ public class User {
 
     public void setPasswordHash(String passwordHash) throws SQLException {
         String sql = null;
-        Statement statement = connection.createStatement();
+        PreparedStatement statement = null;
         if (getMacLevel() == 1) {
-            sql = "UPDATE client SET password_hash = \"" + passwordHash + "\" WHERE id = " + getId() + ";";
+//            sql = "UPDATE client SET password_hash = \"" + passwordHash + "\" WHERE id = " + getId() + ";";
+            sql = "UPDATE client SET password_hash = ? WHERE id = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, passwordHash);
+            statement.setInt(2, getId());
         }
         else if(getMacLevel() == 3) {
-            sql = "UPDATE admin SET password_hash = \"" + passwordHash + "\" WHERE id = " + getId() + ";";
+//            sql = "UPDATE admin SET password_hash = \"" + passwordHash + "\" WHERE id = " + getId() + ";";
+            sql = "UPDATE admin SET password_hash = ? WHERE id = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, passwordHash);
+            statement.setInt(2, getId());
         } else if (getMacLevel() == 2) {
-            sql = "UPDATE courier SET password_hash = \"" + passwordHash + "\" WHERE id = " + getId() + ";";
+//            sql = "UPDATE courier SET password_hash = \"" + passwordHash + "\" WHERE id = " + getId() + ";";
+            sql = "UPDATE courier SET password_hash = ? WHERE id = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, passwordHash);
+            statement.setInt(2, getId());
         }
-        statement.executeUpdate(sql);
+        statement.executeUpdate();
+
         this.passwordHash = passwordHash;
 
     }
 
     public void setUserName(String userName) throws SQLException {
         String sql = null;
-        Statement statement = connection.createStatement();
+        PreparedStatement statement = null;
         if (getMacLevel() == 1) {
-            sql = "UPDATE client SET name = \"" + userName + "\" WHERE id = " + getId() + ";";
+//            sql = "UPDATE client SET name = \"" + userName + "\" WHERE id = " + getId() + ";";
+            sql = "UPDATE client SET name = ? WHERE id = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, userName);
+            statement.setInt(2, getId());
         }
         else if(getMacLevel() == 3) {
-            sql = "UPDATE admin SET name = \"" + userName + "\" WHERE id = " + getId() + ";";
+//            sql = "UPDATE admin SET name = \"" + userName + "\" WHERE id = " + getId() + ";";
+            sql = "UPDATE admin SET name = ? WHERE id = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, userName);
+            statement.setInt(2, getId());
         } else if (getMacLevel() == 2) {
-            sql = "UPDATE courier SET name = \"" + userName + "\" WHERE id = " + getId() + ";";
+//            sql = "UPDATE courier SET name = \"" + userName + "\" WHERE id = " + getId() + ";";
+            sql = "UPDATE courier SET name = ? WHERE id = ?;";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, userName);
+            statement.setInt(2, getId());
         }
-        statement.executeUpdate(sql);
+        statement.executeUpdate();
         this.userName = userName;
     }
 

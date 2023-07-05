@@ -1,3 +1,4 @@
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -21,16 +22,20 @@ public class Client extends User{
     }
 
     public void setAddress(String address) throws SQLException {
-        Statement statement = connection.createStatement();
-        String sql = "UPDATE client SET address = \"" + address + "\" WHERE id = " + getId() + ";";
-        statement.executeUpdate(sql);
+        String sql = "UPDATE client SET address = ? WHERE id = ?;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, address);
+        statement.setInt(2, getId());
+        statement.executeUpdate();
         this.address = address;
     }
 
     public void setPhone(String phone) throws SQLException {
-        Statement statement = connection.createStatement();
-        String sql = "UPDATE client SET phone = \"" + phone + "\" WHERE id = " + getId() + ";";
-        statement.executeUpdate(sql);
+        String sql = "UPDATE client SET phone = ? WHERE id = ?;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, phone);
+        statement.setInt(2, getId());
+        statement.executeUpdate();
         this.phone = phone;
     }
 

@@ -1,3 +1,4 @@
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,9 +17,11 @@ public class Courier extends User{
     }
 
     public void setPhone(String phone) throws SQLException {
-        Statement statement = connection.createStatement();
-        String sql = "UPDATE courier SET phone = \"" + phone + "\" WHERE id = " + getId() + ";";
-        statement.executeUpdate(sql);
+        String sql = "UPDATE courier SET phone = ? WHERE id = ?;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, phone);
+        statement.setInt(2, getId());
+        statement.executeUpdate();
         this.phone = phone;
     }
 }
