@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import jdk.jfr.Frequency;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -64,6 +65,15 @@ public class LinkController implements Initializable{
     TextField courierIdField;
     @FXML
     Button insertBtn;
+    // Для удаление заказа у курьера
+    @FXML
+    Label deleteLabel;
+    @FXML
+    TextField deleteField;
+    @FXML
+    Button deleteBtn;
+    @FXML
+    Label deleteSuccess;
 
     private static User currentUser;
     private Parent root;
@@ -147,7 +157,18 @@ public class LinkController implements Initializable{
                     }
                 }
             });
+            deleteBtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    try {
+                        deleteItemPC(actionEvent);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
         }
+
 
         for (MenuItem menuItem: data.getItems()) {
             menuItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -157,11 +178,45 @@ public class LinkController implements Initializable{
                         showDataMac3(actionEvent, menuItem);
                     } else if (currentUser.getMacLevel() == 1) {
                         showDataMac1(actionEvent, menuItem);
+                    } else if (currentUser.getMacLevel() == 2) {
+                        showDataMac2(actionEvent);
                     }
                 }
             });
         }
 //        user.getItems().get(0).setText("SSS");
+    }
+
+    private void deleteItemPC(ActionEvent actionEvent) throws SQLException {
+        packagesCouriers.delete(Integer.parseInt(deleteField.getText()));
+    }
+
+    private void showDataMac2(ActionEvent actionEvent) {
+        deleteLabel.setVisible(true);
+        deleteField.setVisible(true);
+        deleteBtn.setVisible(true);
+
+        if (table.getColumns().size() > 0) {
+            table.getColumns().clear();
+
+            table.getItems().clear();
+        }
+
+        table.setVisible(true);
+        table.getColumns().add(new TableColumn<>("package_id"));
+        ((TableColumn) table.getColumns().get(0)).setCellValueFactory(new PropertyValueFactory<>("packageId"));
+        table.getColumns().add(new TableColumn<>("courier_id"));
+        ((TableColumn) table.getColumns().get(1)).setCellValueFactory(new PropertyValueFactory<>("CourierId"));
+        for(PackageCourier packageCourier: packagesCouriers.getPackagesCouriers()) {
+            if (currentUser.getId() == packageCourier.getCourierId()) {
+                table.getItems().add(packageCourier);
+                deleteSuccess.setVisible(true);
+            }
+        }
+
+        for(Object column: table.getColumns()) {
+            ((TableColumn) column).setPrefWidth(1000 / table.getColumns().size());
+        }
     }
 
     private void insertToPC(ActionEvent actionEvent) throws SQLException {
@@ -210,6 +265,7 @@ public class LinkController implements Initializable{
         fieldText2.setVisible(true);
         fieldText3.setVisible(true);
         fieldText4.setVisible(true);
+
     }
 
     private void showDataMac3(ActionEvent actionEvent, MenuItem menuItem) {

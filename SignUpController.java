@@ -59,9 +59,8 @@ public class SignUpController implements Initializable {
         SignUp up = new SignUp(usernameField.getText(), phoneField.getText(), addressField.getText(), User.toHash(passField.getText()));
         if (up.checkUserName(clients)) {
             up.addClient(clients);
-            root = FXMLLoader.load(getClass().getResource("LinkScene.fxml"));
             stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = (new LinkScene()).getLinkScene();
             stage.setScene(scene);
             stage.show();
         }

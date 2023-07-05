@@ -13,10 +13,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+        Scene signInScene = (new SignInScene()).getSignInScene();
 
-        Parent root = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
-
-        Scene signInScene = new Scene(root);
 
         primaryStage.setTitle("App");
         primaryStage.setScene(signInScene);
@@ -28,7 +26,8 @@ public class Main extends Application {
         SignInController.setUsers(link.getUsers().getUsers());
         SignUpController.setClients(link.getClients());
         LinkController.setTables(link.getUsers(), link.getClients(), link.getPackages(), link.getPackagesCouriers());
-//        System.out.println(User.toHash("admin"));
+        System.out.println(User.toHash("12345"));
+
     }
     public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         launch(args);

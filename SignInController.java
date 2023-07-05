@@ -70,9 +70,8 @@ public class SignInController implements Initializable {
     public void enter(ActionEvent e) throws IOException, NoSuchAlgorithmException {
         SignIn in = new SignIn(usernameField.getText(), passwordField.getText());
         if (in.checkCorrect(users)) {
-            root = FXMLLoader.load(getClass().getResource("LinkScene.fxml"));
             stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = (new LinkScene()).getLinkScene();
             stage.setScene(scene);
             stage.show();
         }
@@ -82,9 +81,8 @@ public class SignInController implements Initializable {
     }
 
     private void switchToSignUp(ActionEvent e) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        scene = (new SignUpScene()).getSignUpScene();
         stage.setScene(scene);
         stage.show();
     }

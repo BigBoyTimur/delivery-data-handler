@@ -26,4 +26,19 @@ public class PackagesCouriers {
         statement.executeUpdate();
 
     }
+
+    public void delete(int packageIndex) throws SQLException {
+        for(int i = 0; i < packagesCouriers.size(); i++) {
+            if (packagesCouriers.get(i).getPackageId() == packageIndex) {
+                packagesCouriers.remove(i);
+                break;
+            }
+        }
+        String sql = ("DELETE FROM package_courier WHERE package_id = ?");
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        statement.setInt(1, packageIndex);
+
+        statement.executeUpdate();
+    }
 }

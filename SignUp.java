@@ -31,7 +31,8 @@ public class SignUp {
         int id;
         if (clients.getClients().size() > 0) id = clients.getClients().get(clients.getClients().size() -1).getId() + 1;
         else id = 1;
-        Client newClient = new Client(id, name, User.toHash(pass), phone, address);
+        Client newClient = new Client(id, name, pass, phone, address);
+        System.out.println(newClient.getPasswordHash());
         clients.addClient(newClient);
         LinkController.setCurrentUser(newClient);
     }
