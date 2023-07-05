@@ -31,9 +31,10 @@ public class Main extends Application {
         primaryStage.show();
 
 //        User u = new User();
-        Link link = new Link();
+        Link link = Link.getInstance();
 
-        SignInController.setClients(link.getClients().getClients());
+        SignInController.setClients(link.getUsers().getUsers());
+        SignUpController.setClients(link.getClients());
 
     }
     public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {

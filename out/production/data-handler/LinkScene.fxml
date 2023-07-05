@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LinkController">
    <children>
+      <MenuBar fx:id="menuBar" layoutY="1.0" prefHeight="26.0" prefWidth="619.0">
+        <menus>
+          <Menu fx:id="data" mnemonicParsing="false" text="Данные" />
+          <Menu fx:id="user" mnemonicParsing="false" text="Пользователь" />
+        </menus>
+      </MenuBar>
       <Label layoutX="286.0" layoutY="140.0" text="Pluto" />
+      <TitledPane animated="false" layoutX="-282.0" layoutY="172.0" text="untitled" />
    </children>
 </AnchorPane>

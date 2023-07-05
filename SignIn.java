@@ -10,9 +10,10 @@ public class SignIn {
         this.pass = pass;
     }
 
-    public boolean checkCorrect(ArrayList<Client> clients) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        for (Client client : clients) {
-            if (client.userName.equals(this.name) && client.passwordHash.equals(User.toHash(pass))) {
+    public boolean checkCorrect(ArrayList<User> users) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        for (User user : users) {
+            if (user.userName.equals(this.name) && user.passwordHash.equals(User.toHash(pass))) {
+                LinkController.setCurrentUser(user);
                 return true;
             }
         }

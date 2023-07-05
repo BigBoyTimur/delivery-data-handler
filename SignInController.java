@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.PipedReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
@@ -28,13 +29,15 @@ public class SignInController implements Initializable {
     @FXML
     private Button enterBtn;
     @FXML
+    private Button signUpBtn;
+    @FXML
     private Label incorrectLabel;
 
     private Parent root;
     private Scene scene;
     private Stage stage;
 
-    static private ArrayList<Client> clients;
+    static private ArrayList<User> clients;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,9 +53,19 @@ public class SignInController implements Initializable {
                 }
             }
         });
+        signUpBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    switchToSignUp(actionEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
-    public static void setClients(ArrayList<Client> clients) {
+    public static void setClients(ArrayList<User> clients) {
         SignInController.clients = clients;
     }
 
@@ -70,4 +83,11 @@ public class SignInController implements Initializable {
         }
     }
 
+    private void switchToSignUp(ActionEvent e) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
