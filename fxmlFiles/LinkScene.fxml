@@ -43,5 +43,9 @@
       <Label fx:id="packageIdLabel" layoutX="509.0" layoutY="47.0" text="Package Id" visible="false" />
       <Label fx:id="courierIdLabel" layoutX="509.0" layoutY="95.0" text="Courier Id" visible="false" />
       <Button fx:id="insertBtn" layoutX="754.0" layoutY="70.0" mnemonicParsing="false" text="Insert" visible="false" />
+      <Button fx:id="deleteBtn" layoutX="774.0" layoutY="69.0" mnemonicParsing="false" text="delete" visible="false" />
+      <TextField fx:id="deleteField" layoutX="726.0" layoutY="70.0" prefHeight="5.0" prefWidth="27.0" visible="false" />
+      <Label fx:id="deleteLabel" layoutX="619.0" layoutY="73.0" text="Введите индекс:" visible="false" />
+      <Label fx:id="deleteSuccess" layoutX="840.0" layoutY="74.0" text="успешно" visible="false" />
    </children>
 </AnchorPane>
