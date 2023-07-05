@@ -43,6 +43,10 @@ public class LinkController implements Initializable{
         else if(currentUser.getMacLevel() == 3) {
             user.getItems().add(new MenuItem("Имя"));
             user.getItems().add(new MenuItem("Пароль"));
+        } else if (currentUser.getMacLevel() == 2) {
+            user.getItems().add(new MenuItem("Имя"));
+            user.getItems().add(new MenuItem("Пароль"));
+            user.getItems().add(new MenuItem("Телефон"));
         }
         for (MenuItem menuItem: user.getItems()) {
             menuItem.setOnAction(new EventHandler<ActionEvent>() {

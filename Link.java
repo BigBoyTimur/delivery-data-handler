@@ -37,6 +37,16 @@ public class Link {
                 users.getUsers().add(new Admin(id, name, passwordHash));
             }
 
+            statement = connection.createStatement();
+            result = statement.executeQuery("SELECT * FROM courier");
+            while (result.next()) {
+                int id = result.getInt("id");
+                String name = result.getString("name" );
+                String phone = result.getString("phone" );
+                String passwordHash = result.getString("password_hash");
+                users.getUsers().add(new Courier(id, name, passwordHash, phone));
+            }
+
 
 //            System.out.println(clients.getClients().size());
 

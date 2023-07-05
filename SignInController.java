@@ -13,8 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.PipedReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ public class SignInController implements Initializable {
     private Scene scene;
     private Stage stage;
 
-    static private ArrayList<User> clients;
+    static private ArrayList<User> users;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,13 +63,13 @@ public class SignInController implements Initializable {
         });
     }
 
-    public static void setClients(ArrayList<User> clients) {
-        SignInController.clients = clients;
+    public static void setUsers(ArrayList<User> users) {
+        SignInController.users = users;
     }
 
     public void enter(ActionEvent e) throws IOException, NoSuchAlgorithmException {
         SignIn in = new SignIn(usernameField.getText(), passwordField.getText());
-        if (in.checkCorrect(clients)) {
+        if (in.checkCorrect(users)) {
             root = FXMLLoader.load(getClass().getResource("LinkScene.fxml"));
             stage = (Stage)((Node)e.getSource()).getScene().getWindow();
             scene = new Scene(root);

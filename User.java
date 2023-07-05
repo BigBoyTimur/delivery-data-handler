@@ -34,6 +34,8 @@ public class User {
         }
         else if(getMacLevel() == 3) {
             sql = "UPDATE admin SET password_hash = \"" + passwordHash + "\" WHERE id = " + getId() + ";";
+        } else if (getMacLevel() == 2) {
+            sql = "UPDATE courier SET password_hash = \"" + passwordHash + "\" WHERE id = " + getId() + ";";
         }
         statement.executeUpdate(sql);
         this.passwordHash = passwordHash;
@@ -48,6 +50,8 @@ public class User {
         }
         else if(getMacLevel() == 3) {
             sql = "UPDATE admin SET name = \"" + userName + "\" WHERE id = " + getId() + ";";
+        } else if (getMacLevel() == 2) {
+            sql = "UPDATE courier SET name = \"" + userName + "\" WHERE id = " + getId() + ";";
         }
         statement.executeUpdate(sql);
         this.userName = userName;

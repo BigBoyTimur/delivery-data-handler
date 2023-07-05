@@ -34,7 +34,8 @@ public class UserController implements Initializable {
         switch (field) {
             case "Имя": value.setText(currentUser.getUserName());
                 break;
-            case "Телефон": value.setText((((Client) currentUser).getPhone()));
+            case "Телефон": if (currentUser instanceof Client) value.setText((((Client) currentUser).getPhone()));
+                else value.setText((((Courier) currentUser).getPhone()));
                 break;
             case "Адрес": value.setText((((Client) currentUser).getAddress()));
                 break;
@@ -63,8 +64,13 @@ public class UserController implements Initializable {
             case "Пароль": currentUser.setPasswordHash(User.toHash(textField.getText()));
                 value.setText("Невозможно для пароля");
                 break;
-            case "Телефон": ((Client) currentUser).setPhone(textField.getText());
+            case "Телефон": if (currentUser instanceof Client) {
+                ((Client) currentUser).setPhone(textField.getText());
                 value.setText((((Client) currentUser).getPhone()));
+            } else {
+                ((Courier) currentUser).setPhone(textField.getText());
+                value.setText((((Courier) currentUser).getPhone()));
+            }
                 break;
             case "Адрес": ((Client) currentUser).setAddress(textField.getText());
                 value.setText((((Client) currentUser).getAddress()));
