@@ -9,10 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import jdk.jfr.Frequency;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -335,7 +333,7 @@ public class LinkController implements Initializable{
         if (currentTable.equals("packages")) {
             PackageController.setPackages(packages);
             PackageController.setCurrentId(Integer.parseInt(editItemField.getText()));
-            root = FXMLLoader.load(getClass().getResource("Package.fxml"));
+            root = FXMLLoader.load(getClass().getResource("fxmlFiles/Package.fxml"));
             stage = new Stage();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -350,7 +348,7 @@ public class LinkController implements Initializable{
     public void changeUserField(ActionEvent e, MenuItem menuItem) throws IOException {
         UserController.setField(menuItem.getText());
         UserController.setCurrentUser(currentUser);
-        root = FXMLLoader.load(getClass().getResource("User.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxmlFiles/User.fxml"));
         stage = new Stage();
         scene = new Scene(root);
         stage.setScene(scene);

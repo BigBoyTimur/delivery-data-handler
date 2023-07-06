@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PackageController">
+   <children>
+      <TextField fx:id="weightField" layoutX="76.0" layoutY="88.0" />
+      <Label layoutX="76.0" layoutY="59.0" text="weight" />
+      <TextField fx:id="typeOfDeliveryField" layoutX="76.0" layoutY="166.0" />
+      <Label layoutX="76.0" layoutY="137.0" text="type_of_delivery" />
+      <TextField fx:id="senderIdField" layoutX="76.0" layoutY="245.0" />
+      <Label layoutX="76.0" layoutY="216.0" text="sender_id" />
+      <TextField fx:id="recipientIdField" layoutX="318.0" layoutY="90.0" />
+      <Label layoutX="318.0" layoutY="61.0" text="recipient_id" />
+      <TextField fx:id="senderCenterIdField" layoutX="318.0" layoutY="168.0" />
+      <Label layoutX="318.0" layoutY="139.0" text="sender_center_id" />
+      <TextField fx:id="recipientCenterIdField" layoutX="318.0" layoutY="247.0" />
+      <Label layoutX="318.0" layoutY="218.0" text="recipient_center_id" />
+      <Button fx:id="btn" layoutX="274.0" layoutY="329.0" mnemonicParsing="false" text="Change" />
+      <Label fx:id="succesLabel" layoutX="277.0" layoutY="302.0" text="Успешно" visible="false" />
+   </children>
+</AnchorPane>

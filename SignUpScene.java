@@ -10,7 +10,7 @@ public class SignUpScene {
 
 
     public SignUpScene() throws IOException {
-        root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxmlFiles/SignUp.fxml"));
         signUpScene = new Scene(root);
     }
 

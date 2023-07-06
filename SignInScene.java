@@ -10,7 +10,7 @@ public class SignInScene {
 
 
     public SignInScene() throws IOException {
-        root = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
+        root = FXMLLoader.load(getClass().getResource("fxmlFiles/SignIn.fxml"));
         signInScene = new Scene(root);
     }
 
